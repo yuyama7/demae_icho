@@ -3,6 +3,7 @@ Rails.application.routes.draw do
     resources :menus
   end
   get 'search_restaurants', to: 'restaurants#search'
+  post 'add_to_cart', to: 'menus#add_to_cart'
   resources :order_items
   resources :orders
   devise_for :users
