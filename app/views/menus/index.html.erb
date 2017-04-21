@@ -46,3 +46,7 @@
 <% if current_user.owner? %>
   <%= link_to 'New Menu', new_restaurant_menu_path(:restaurant_id => @restaurant_id) %>
 <% end %>
+
+<% if current_user.customer? %>
+  <%= link_to 'Order delivery', new_order_path %>
+<% end %>
