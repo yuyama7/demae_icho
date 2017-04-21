@@ -18,7 +18,7 @@
         <td><%= restaurant.name %></td>
         <td><%= restaurant.location %></td>
         <td><%= restaurant.delivery_charge %></td>
-        <td><%= link_to 'Orders', restaurant %></td>
+        <td><%= link_to 'Orders', customer_orders_path(:id => restaurant.id) %></td>
         <td><%= link_to 'Menu', restaurant_menus_path(:restaurant_id => restaurant.id) %></td>
         <td><%= link_to 'Edit', edit_restaurant_path(restaurant) %></td>
         <td><%= link_to 'Destroy', restaurant, method: :delete, data: { confirm: 'Are you sure?' } %></td>
