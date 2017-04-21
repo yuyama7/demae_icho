@@ -3,11 +3,26 @@
   <head>
     <title>DemaeIcho</title>
     <%= csrf_meta_tags %>
-
+    <% if false %>
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
-  </head>
+    <%= stylesheet_link_tag    "application" %>
+  	<%= javascript_include_tag "application" %>
+    <% end %>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="/assets/jquery.mobile.structure-1.0.1.css" />
+	<link rel="apple-touch-icon" href="/assets/launch_icon_57.png" />
+	<link rel="apple-touch-icon" sizes="72x72" href="/assets/launch_icon_72.png" />
+	<link rel="apple-touch-icon" sizes="114x114" href="/assets/launch_icon_114.png" />
+	<link rel="stylesheet" href="/assets/jquery.mobile-1.0.1.css" />
+	<link rel="stylesheet" href="/assets/custom.css" />
+	<script src="/assets/jquery-1.7.1.min.js"></script>
+	<script src="/assets/jquery.mobile-1.0.1.min.js"></script>
+    <!-- <link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css" />
+	<script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
+	<script src="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script> -->
 
+  </head>
   <body>
 
     <div id="main-container" class="container">
