@@ -2,5 +2,5 @@
 
 <%= render 'form', menu: @menu %>
 
-<%= link_to 'Show', restaurant_menu_path(@menu.id) %> |
-<%= link_to 'Back', restaurant_menus_path %>
+<%= link_to 'Show', restaurant_menu_path(:restaurant_id => @menu.restaurant_id, :id => @menu.id) %> |
+<%= link_to 'Back', restaurant_menus_path(@menu.restaurant_id) %>
