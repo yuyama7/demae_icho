@@ -31,6 +31,9 @@ class OrdersController < ApplicationController
     @order = Order.new(user_id: current_user.id, restaurant_id: params[:order][:restaurant_id], status: Order.statuses[:requested])
     respond_to do |format|
       if @order.save
+        params[:order][:menu_ids].each { |item_id|
+          OrderItem.create(order_id: @order.id, menu_id: item_id)
+        }
         session[:shopping_cart] = Array.new
         format.html { redirect_to @order_items_path, notice: 'Order was successfully created.' }
         format.json { render :show, status: :created, location: @order }

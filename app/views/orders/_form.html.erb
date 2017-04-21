@@ -31,6 +31,7 @@
           <td><%= menu.price %></td>
           <td><%= link_to 'delete from cart', delete_from_cart_path(:id => menu.id), method: :post, data: { confirm: 'Are you sure?' } %></td>
         </tr>
+        <%= f.hidden_field :menu_ids, :multiple => true, :value => menu.id %>
       <% end %>
     </tbody>
   </table>
