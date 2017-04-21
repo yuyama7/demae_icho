@@ -4,6 +4,7 @@ Rails.application.routes.draw do
   end
   get 'search_restaurants', to: 'restaurants#search'
   post 'add_to_cart', to: 'menus#add_to_cart'
+  post 'delete_from_cart', to: 'menus#delete_from_cart'
   resources :order_items
   resources :orders
   devise_for :users

@@ -11,6 +11,33 @@
     </div>
   <% end %>
 
+  <table>
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Description</th>
+        <th>Image path</th>
+        <th>Price</th>
+        <th colspan="1"></th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <% @menus.each do |menu| %>
+        <tr>
+          <td><%= menu.name %></td>
+          <td><%= menu.description %></td>
+          <td><%= menu.image_path %></td>
+          <td><%= menu.price %></td>
+          <% if current_user.customer? %>
+            <td><%= link_to 'delete from cart', delete_from_cart_path(:id => menu.id), method: :post, data: { confirm: 'Are you sure?' } %></td>
+          <% end %>
+
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+
   <div class="actions">
     <%= f.submit %>
   </div>
