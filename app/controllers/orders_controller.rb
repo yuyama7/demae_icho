@@ -1,5 +1,6 @@
 class OrdersController < ApplicationController
   before_action :set_order, only: [:show, :edit, :update, :destroy]
+  before_action :set_restaurant, :only => [:index, :create, :new, :edit]
 
   # GET /orders
   # GET /orders.json
@@ -14,6 +15,8 @@ class OrdersController < ApplicationController
 
   # GET /orders/new
   def new
+    session[:shopping_cart] ||= Array.new
+    @menus = Menu.where(id: session[:shopping_cart])
     @order = Order.new
   end
 
@@ -24,10 +27,10 @@ class OrdersController < ApplicationController
   # POST /orders
   # POST /orders.json
   def create
-    @order = Order.new(order_params)
-
+    @order = Order.new(user_id: current_user.id, restaurant_id: @restaurant.id, status: Order.statuses[:requested])
     respond_to do |format|
       if @order.save
+        session[:shopping_cart] = Array.new
         format.html { redirect_to @order, notice: 'Order was successfully created.' }
         format.json { render :show, status: :created, location: @order }
       else
@@ -65,6 +68,10 @@ class OrdersController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_order
       @order = Order.find(params[:id])
+    end
+
+    def set_restaurant
+      @restaurant = Restaurant.find(params[:restaurant_id])
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
