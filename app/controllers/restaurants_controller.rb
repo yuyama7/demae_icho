@@ -1,11 +1,15 @@
 class RestaurantsController < ApplicationController
-  before_action :set_restaurant, only: [:show, :edit, :update, :destroy]
+  before_action :set_restaurant, only: [:show, :edit, :update, :destroy, :customer_orders]
   before_action :set_user, :only => [:index, :show, :create]
 
   # GET /restaurants
   # GET /restaurants.json
   def index
     @restaurants = @user.restaurants.all
+  end
+
+  def search
+    @restaurants = Restaurant.all
   end
 
   # GET /restaurants/1
@@ -59,6 +63,10 @@ class RestaurantsController < ApplicationController
       format.html { redirect_to restaurants_url, notice: 'Restaurant was successfully destroyed.' }
       format.json { head :no_content }
     end
+  end
+
+  def customer_orders
+    @orders = @restaurant.orders.all
   end
 
   private
