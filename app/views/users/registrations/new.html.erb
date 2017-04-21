@@ -31,6 +31,10 @@
     <%= f.text_field :location %>
   </div>
 
+  <div class="field">
+    <%= f.collection_radio_buttons :account_type, User.account_types, :first, :first %>
+  </div>
+
   <div class="actions">
     <%= f.submit "Sign up" %>
   </div>
