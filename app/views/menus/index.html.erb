@@ -1,5 +1,17 @@
-<div class="container">
-  <p id="notice"><%= notice %></p>
+<p id="notice"><%= notice %></p>
+
+<h1>Menus</h1>
+
+<table class="table table-hover">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Description</th>
+      <th>Image path</th>
+      <th>Price</th>
+      <% if current_user.owner? %>
+        <th colspan="2"></th>
+      <% end %>
 
   <h1>Menus</h1>
 
