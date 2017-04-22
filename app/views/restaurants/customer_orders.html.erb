@@ -22,28 +22,11 @@
         <td><%= order.created_at %></td>
         <td><%= order.status %></td>
         <td><%= link_to 'View Orders', customer_orders_list_path(order.id) %></td>
-        <% if order.status == "requested" %>
+        <% if order.requested? %>
           <td><%= link_to 'Accept', order_status_update_path(:id => order.id, :status => Order.statuses[:accepted]), method: :post %></td>
           <td><%= link_to 'Cancel', order_status_update_path(:id => order.id, :status => Order.statuses[:rejected]), method: :post %></td>
         <% end %>
       </tr>
-    </thead>
-
-    <tbody>
-      <% @orders.each do |order| %>
-        <tr>
-          <td><%= order.id %></td>
-          <td><%= order.user.name %></td>
-          <td><%= order.created_at %></td>
-          <td><%= order.status %></td>
-          <td><%= link_to 'View Orders', customer_orders_list_path(order.id) %></td>
-          <% if order.status == "requested" %>
-            <td><%= link_to 'Accept', order_status_update_path(:id => order.id, :status => 4), method: :post %></td>
-            <td><%= link_to 'Cancel', order_status_update_path(:id => order.id, :status => 1), method: :post %></td>
-          <% elsif order.status == "accepted" %>
-            <td><%= link_to 'Deliver', order_status_update_path(:id => order.id, :status => 2), method: :post %></td>
-          <% end %>
-        </tr>
       <% end %>
     </tbody>
   </table>
