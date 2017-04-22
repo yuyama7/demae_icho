@@ -15,6 +15,7 @@ class OrdersController < ApplicationController
     @order_list.each { |x|
       @total_price += x.menu.price
     }
+    @total_price += @order.restaurant.delivery_charge
   end
 
   # GET /orders/new
@@ -86,6 +87,7 @@ class OrdersController < ApplicationController
     @order_list.each { |x|
       @total_price += x.menu.price
     }
+    @total_price += @order.restaurant.delivery_charge
   end
 
   private
