@@ -1,10 +1,11 @@
 class MenusController < ApplicationController
   before_action :set_menu, only: [:show, :edit, :update, :destroy]
-  before_action :set_restaurant, :only => [:index, :show, :create]
+  before_action :set_restaurant, :only => [:index, :create, :new, :edit]
 
   # GET /menus
   # GET /menus.json
   def index
+    @restaurant_id = @restaurant_id
     @menus = @restaurant.menus.all
   end
 
@@ -15,7 +16,7 @@ class MenusController < ApplicationController
 
   # GET /menus/new
   def new
-    @menu = Menu.new
+    @menu = Menu.new()
   end
 
   # GET /menus/1/edit
@@ -25,11 +26,11 @@ class MenusController < ApplicationController
   # POST /menus
   # POST /menus.json
   def create
-    @menu = Menu.new(menu_params)
+    @menu = @restaurant.menus.new(menu_params)
 
     respond_to do |format|
       if @menu.save
-        format.html { redirect_to @menu, notice: 'Menu was successfully created.' }
+        format.html { redirect_to restaurant_menus_path(:restaurant_id => @restaurant_id), notice: 'Menu was successfully created.' }
         format.json { render :show, status: :created, location: @menu }
       else
         format.html { render :new }
@@ -70,6 +71,7 @@ class MenusController < ApplicationController
 
     def set_restaurant
       @restaurant = Restaurant.find(params[:restaurant_id])
+      @restaurant_id = @restaurant.id
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
