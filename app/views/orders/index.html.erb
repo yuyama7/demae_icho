@@ -6,10 +6,15 @@
   <table class="table table-hover">
     <thead>
       <tr>
-        <th >#</th>
-        <th>Order Date</th>
-        <th>Order Status</th>
-        <th colspan="2">orders</th>
+        <td><%= order.id %></td>
+        <td><%= order.created_at %></td>
+        <td><%= order.status %></td>
+        <td><%= link_to 'Show', order_path(order) %></td>
+        <td>
+        <% if order.requested? %>
+          <%= link_to 'Cancel', order, method: :delete, data: { confirm: 'Are you sure?' } %>
+        <% end %>
+        </td>
       </tr>
     </thead>
 
