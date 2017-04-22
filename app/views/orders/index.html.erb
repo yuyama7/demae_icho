@@ -19,7 +19,11 @@
         <td><%= order.created_at %></td>
         <td><%= order.status %></td>
         <td><%= link_to 'Show', order_path(order) %></td>
-        <td><%= link_to 'cancel', order, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td>
+        <% if order.requested? %>
+          <%= link_to 'cancel', order, method: :delete, data: { confirm: 'Are you sure?' } %>
+        <% end %>
+        </td>
       </tr>
     <% end %>
   </tbody>
@@ -27,4 +31,4 @@
 
 <br>
 
-<%= link_to 'New Order', new_order_path %>
+<!-- <%= link_to 'New Order', new_order_path %> -->
