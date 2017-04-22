@@ -22,7 +22,7 @@
           <td><%= link_to 'Show', order_path(order) %></td>
           <td>
           <% if order.requested? %>
-            <%= link_to 'cancel', order, method: :delete, data: { confirm: 'Are you sure?' } %>
+            <%= link_to 'Cancel', order, method: :delete, data: { confirm: 'Are you sure?' } %>
           <% end %>
           </td>
         </tr>
@@ -32,4 +32,3 @@
 
   <br>
 </div>
-
