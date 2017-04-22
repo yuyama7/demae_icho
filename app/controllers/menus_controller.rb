@@ -1,5 +1,5 @@
 class MenusController < ApplicationController
-  before_action :set_menu, only: [:show, :edit, :update, :destroy, :add_to_cart]
+  before_action :set_menu, only: [:show, :edit, :update, :destroy, :add_to_cart, :delete_from_cart]
   before_action :set_restaurant, :only => [:index, :create, :new, :edit]
 
   # GET /menus
@@ -15,6 +15,12 @@ class MenusController < ApplicationController
   def add_to_cart
     session[:shopping_cart] ||= Array.new
     session[:shopping_cart].push(@menu.id)
+    redirect_to(:back)
+  end
+
+  def delete_from_cart
+    session[:shopping_cart] ||= Array.new
+    session[:shopping_cart].delete(@menu.id)
     redirect_to(:back)
   end
 

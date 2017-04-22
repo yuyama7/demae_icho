@@ -48,6 +48,5 @@
 <% end %>
 
 <% if current_user.customer? %>
-  <%= link_to 'Order delivery', new_order_path %>
+  <%= link_to 'view your cart', new_restaurant_order_path(:restaurant_id => @restaurant_id) %>
 <% end %>
-
