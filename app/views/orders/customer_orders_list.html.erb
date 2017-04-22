@@ -56,3 +56,7 @@
 </table>
 
 <br>
+
+<%= link_to 'order accept', order_status_update_path(:id => @order.id, :status => Order.statuses[:accepted]), method: :post %><br /><br />
+<%= link_to 'order reject', order_status_update_path(:id => @order.id, :status => Order.statuses[:rejected]), method: :post %><br /><br />
+<%= link_to 'deliver order', order_status_update_path(:id => @order.id, :status => Order.statuses[:delivering]), method: :post %><br /><br />
