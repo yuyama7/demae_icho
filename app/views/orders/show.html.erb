@@ -1,47 +1,49 @@
-<p id="notice"><%= notice %></p>
+<div class="container">
+  <p id="notice"><%= notice %></p>
 
-<p>
-  <strong>Restaurant Name</strong>
-  <%= @order.restaurant.name %>
-</p>
+  <p>
+    <strong>Restaurant Name</strong>
+    <%= @order.restaurant.name %>
+  </p>
 
-<p>
-  <strong>Status</strong>
-  <%= @order.status %>
-</p>
+  <p>
+    <strong>Status</strong>
+    <%= @order.status %>
+  </p>
 
-<p>
-  <strong>Delivery charge</strong>
-  <%= @order.restaurant.delivery_charge %>
-</p>
+  <p>
+    <strong>Delivery charge</strong>
+    <%= @order.restaurant.delivery_charge %>
+  </p>
 
-<p>
-  <strong>Total Price</strong>
-  <%= @total_price %>
-</p>
+  <p>
+    <strong>Total Price</strong>
+    <%= @total_price %>
+  </p>
 
-<table class="table table-hover">
-  <thead>
-    <tr>
-      <th>Name</th>
-      <th>Image</th>
-      <th>price</th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @order.order_items.each do |item| %>
+  <table class="table table-hover">
+    <thead>
       <tr>
-        <td><%= item.menu.name %></td>
-        <td><%= image_tag item.menu.image_path, size:50 %></td>
-        <td><%= item.menu.price %></td>
+        <th>Name</th>
+        <th>Image</th>
+        <th>price</th>
       </tr>
-    <% end %>
-  </tbody>
-</table>
+    </thead>
 
-<% if @order.accepted? %>
-did you receive your foods? <%= link_to 'yes', order_status_update_path(:id => @order.id, :status => Order.statuses[:received]), method: :post %><br /><br />
-<% end %>
+    <tbody>
+      <% @order.order_items.each do |item| %>
+        <tr>
+          <td><%= item.menu.name %></td>
+          <td><%= image_tag item.menu.image_path, size:50 %></td>
+          <td><%= item.menu.price %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
 
-<%= link_to 'Back', orders_path %>
+  <% if @order.accepted? %>
+  did you receive your foods? <%= link_to 'yes', order_status_update_path(:id => @order.id, :status => Order.statuses[:received]), method: :post %><br /><br />
+  <% end %>
+
+  <%= link_to 'Back', orders_path, :class => "btn btn-primary" %>
+</div>
