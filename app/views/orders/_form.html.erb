@@ -1,4 +1,4 @@
-<%= form_for([@restaurant, @restaurant.orders.build]) do |f| %>
+<%= form_for(order) do |f| %>
   <% if order.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(order.errors.count, "error") %> prohibited this order from being saved:</h2>
@@ -18,7 +18,7 @@
         <th>Description</th>
         <th>Image path</th>
         <th>Price</th>
-        <th colspan="1"></th>
+        <th></th>
       </tr>
     </thead>
 
@@ -29,15 +29,13 @@
           <td><%= menu.description %></td>
           <td><%= menu.image_path %></td>
           <td><%= menu.price %></td>
-          <% if current_user.customer? %>
-            <td><%= link_to 'delete from cart', delete_from_cart_path(:id => menu.id), method: :post, data: { confirm: 'Are you sure?' } %></td>
-          <% end %>
-
+          <td><%= link_to 'delete from cart', delete_from_cart_path(:id => menu.id), method: :post, data: { confirm: 'Are you sure?' } %></td>
         </tr>
       <% end %>
     </tbody>
   </table>
 
+  <%= f.hidden_field :restaurant_id, :value => @restaurant_id %>
   <div class="actions">
     <%= f.submit "order delivery"%>
   </div>
