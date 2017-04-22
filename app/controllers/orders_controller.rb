@@ -1,6 +1,5 @@
 class OrdersController < ApplicationController
   before_action :set_order, only: [:show, :edit, :update, :destroy, :update_status, :customer_orders_list]
-  before_action :set_restaurant, :only => [:index, :create, :new, :edit]
 
   # GET /orders
   # GET /orders.json
@@ -11,13 +10,21 @@ class OrdersController < ApplicationController
   # GET /orders/1
   # GET /orders/1.json
   def show
+    @order_list = @order.order_items.all
+    @total_price = 0
+    @order_list.each { |x|
+      @total_price += x.menu.price
+    }
+    @total_price += @order.restaurant.delivery_charge
   end
 
   # GET /orders/new
   def new
     @restaurant_id = params[:restaurant_id]
     session[:shopping_cart] ||= Array.new
-    @menus = Menu.where(id: session[:shopping_cart])
+    if session[:shopping_cart].present?
+      @menus = Menu.where(id: session[:shopping_cart])
+    end
     @order = Order.new
   end
 
@@ -35,7 +42,7 @@ class OrdersController < ApplicationController
           OrderItem.create(order_id: @order.id, menu_id: item_id)
         }
         session[:shopping_cart] = Array.new
-        format.html { redirect_to @order_items_path, notice: 'Order was successfully created.' }
+        format.html { redirect_to @order, notice: 'Order was successfully created.' }
         format.json { render :show, status: :created, location: @order }
       else
         format.html { render :new }
@@ -63,7 +70,7 @@ class OrdersController < ApplicationController
   def destroy
     @order.destroy
     respond_to do |format|
-      format.html { redirect_to orders_url, notice: 'Order was successfully destroyed.' }
+      format.html { redirect_to orders_url, notice: 'Order was successfully canceled.' }
       format.json { head :no_content }
     end
   end
@@ -76,6 +83,11 @@ class OrdersController < ApplicationController
 
   def customer_orders_list
     @order_list = @order.order_items.all
+    @total_price = 0
+    @order_list.each { |x|
+      @total_price += x.menu.price
+    }
+    @total_price += @order.restaurant.delivery_charge
   end
 
   private
