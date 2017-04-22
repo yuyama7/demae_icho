@@ -1,5 +1,5 @@
 class OrdersController < ApplicationController
-  before_action :set_order, only: [:show, :edit, :update, :destroy]
+  before_action :set_order, only: [:show, :edit, :update, :destroy, :update_status]
   before_action :set_restaurant, :only => [:index, :create, :new, :edit]
 
   # GET /orders
@@ -31,7 +31,7 @@ class OrdersController < ApplicationController
     respond_to do |format|
       if @order.save
         session[:shopping_cart] = Array.new
-        format.html { redirect_to @order, notice: 'Order was successfully created.' }
+        format.html { redirect_to @order_items_path, notice: 'Order was successfully created.' }
         format.json { render :show, status: :created, location: @order }
       else
         format.html { render :new }
@@ -62,6 +62,12 @@ class OrdersController < ApplicationController
       format.html { redirect_to orders_url, notice: 'Order was successfully destroyed.' }
       format.json { head :no_content }
     end
+  end
+
+  def update_status
+    @order.status = params[:status].to_i
+    @order.save
+    redirect_to(:back)
   end
 
   private

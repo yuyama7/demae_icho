@@ -8,6 +8,7 @@
       <th>#</th>
       <th>Order By</th>
       <th>Order Date</th>
+      <th>Order Status</th>
       <th colspan="3"></th>
     </tr>
   </thead>
@@ -18,8 +19,13 @@
         <td><%= order.id %></td>
         <td><%= order.user.name %></td>
         <td><%= order.created_at %></td>
-        <td><%= link_to 'Accept', order %></td>
-        <td><%= link_to 'Cancel', order %></td>
+        <td><%= order.status %></td>
+        <% if order.status == "requested" %>
+          <td><%= link_to 'Accept', order_status_update_path(:id => order.id, :status => 4), method: :post %></td>
+          <td><%= link_to 'Cancel', order_status_update_path(:id => order.id, :status => 1), method: :post %></td>
+        <% elsif order.status == "accepted" %>
+          <td><%= link_to 'Deliver', order_status_update_path(:id => order.id, :status => 2), method: :post %></td>
+        <% end %>
       </tr>
     <% end %>
   </tbody>

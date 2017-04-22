@@ -15,4 +15,5 @@ Rails.application.routes.draw do
   get '/restaurant/:id/customer_orders', to: 'restaurants#customer_orders', as: 'customer_orders'
   get '/restaurant/:id/customer_orders/list', to: 'restaurants#customer_orders_list', as: 'customer_orders_list'
   get '/restaurant/all', to: 'restaurants#all_list', as: 'restaurants_all'
+  post '/order/:id/update_status', to: 'orders#update_status', as: 'order_status_update'
 end
