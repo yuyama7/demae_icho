@@ -9,7 +9,13 @@
       <th>Description</th>
       <th>Image path</th>
       <th>Price</th>
-      <th colspan="3"></th>
+      <% if current_user.owner? %>
+        <th colspan="2"></th>
+      <% end %>
+
+      <% if current_user.customer? %>
+        <th colspan="1"></th>
+      <% end %>
     </tr>
   </thead>
 
@@ -20,9 +26,16 @@
         <td><%= menu.description %></td>
         <td><%= menu.image_path %></td>
         <td><%= menu.price %></td>
-        <td><%= link_to 'Edit', edit_restaurant_menu_path(:restaurant_id => @restaurant_id, :id => menu.id) %></td>
-        <td><%= link_to 'Destroy', restaurant_menu_path(:id => menu.id), method: :delete, data: { confirm: 'Are you sure?' } %></td>
-        <td><%= link_to 'add to cart', add_to_cart_path(:id => menu.id), method: :post, data: { confirm: 'Are you sure?' } %></td>
+
+        <% if current_user.owner? %>
+          <td><%= link_to 'Edit', edit_restaurant_menu_path(:restaurant_id => @restaurant_id, :id => menu.id) %></td>
+          <td><%= link_to 'Destroy', restaurant_menu_path(:id => menu.id), method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <% end %>
+
+        <% if current_user.customer? %>
+          <td><%= link_to 'add to cart', add_to_cart_path(:id => menu.id), method: :post, data: { confirm: 'Are you sure?' } %></td>
+        <% end %>
+
       </tr>
     <% end %>
   </tbody>
@@ -30,5 +43,11 @@
 
 <br>
 
-<%= link_to 'New Menu', new_restaurant_menu_path(:restaurant_id => @restaurant_id) %>
-<%= link_to 'Back', restaurants_path %>
+<% if current_user.owner? %>
+  <%= link_to 'New Menu', new_restaurant_menu_path(:restaurant_id => @restaurant_id) %>
+<% end %>
+
+<% if current_user.customer? %>
+  <%= link_to 'Order delivery', new_order_path %>
+<% end %>
+
