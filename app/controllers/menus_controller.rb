@@ -1,5 +1,5 @@
 class MenusController < ApplicationController
-  before_action :set_menu, only: [:show, :edit, :update, :destroy]
+  before_action :set_menu, only: [:show, :edit, :update, :destroy, :add_to_cart]
   before_action :set_restaurant, :only => [:index, :create, :new, :edit]
 
   # GET /menus
@@ -7,6 +7,15 @@ class MenusController < ApplicationController
   def index
     @restaurant_id = @restaurant_id
     @menus = @restaurant.menus.all
+  end
+
+  def list
+  end
+
+  def add_to_cart
+    session[:shopping_cart] ||= Array.new
+    session[:shopping_cart].push(@menu.id)
+    redirect_to(:back)
   end
 
   # GET /menus/1

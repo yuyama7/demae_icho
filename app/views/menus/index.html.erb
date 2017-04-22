@@ -22,6 +22,7 @@
         <td><%= menu.price %></td>
         <td><%= link_to 'Edit', edit_restaurant_menu_path(:restaurant_id => @restaurant_id, :id => menu.id) %></td>
         <td><%= link_to 'Destroy', restaurant_menu_path(:id => menu.id), method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to 'add to cart', add_to_cart_path(:id => menu.id), method: :post, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
   </tbody>

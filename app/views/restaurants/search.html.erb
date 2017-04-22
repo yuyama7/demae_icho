@@ -1,0 +1,25 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Restaurants</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Location</th>
+      <th>Delivery charge</th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @restaurants.each do |restaurant| %>
+      <tr>
+        <td><%= restaurant.name %></td>
+        <td><%= restaurant.location %></td>
+        <td><%= restaurant.delivery_charge %></td>
+        <td><%= link_to 'Menu', restaurant_menus_path(:restaurant_id => restaurant.id) %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
