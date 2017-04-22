@@ -10,6 +10,7 @@ class OrdersController < ApplicationController
   # GET /orders/1
   # GET /orders/1.json
   def show
+    @order_list = @order.order_items.all
     @total_price = 0
     @order_list.each { |x|
       @total_price += x.menu.price
