@@ -190,6 +190,7 @@ DEPENDENCIES
   puma (~> 3.0)
   rails (~> 5.0.2)
   sass-rails (>= 3.2)
+  seed_dump
   spring
   spring-watcher-listen (~> 2.0.0)
   sqlite3
