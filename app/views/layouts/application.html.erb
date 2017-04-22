@@ -22,10 +22,11 @@
                     <span class="icon-bar"></span>
                 </button>
                 <a class="navbar-brand" href="#">Demae Icho</a>
-                <% if current_user.customer? %>
+                <% if user_signed_in? && current_user.customer? %>
                   <%= link_to 'View Restaurants', search_restaurants_path, class: "navbar-brand" %>
                   <%= link_to 'View Orders', orders_path, class: "navbar-brand" %>
                 <% end %>
+
             </div>
                 <div id="navbar" class="navbar-collapse collapse">
                     <ul class="nav navbar-nav navbar-right">
