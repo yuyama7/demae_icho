@@ -10,6 +10,10 @@ class OrdersController < ApplicationController
   # GET /orders/1
   # GET /orders/1.json
   def show
+    @total_price = 0
+    @order_list.each { |x|
+      @total_price += x.menu.price
+    }
   end
 
   # GET /orders/new
@@ -36,7 +40,7 @@ class OrdersController < ApplicationController
           OrderItem.create(order_id: @order.id, menu_id: item_id)
         }
         session[:shopping_cart] = Array.new
-        format.html { redirect_to @order_items_path, notice: 'Order was successfully created.' }
+        format.html { redirect_to @order, notice: 'Order was successfully created.' }
         format.json { render :show, status: :created, location: @order }
       else
         format.html { render :new }
@@ -77,6 +81,10 @@ class OrdersController < ApplicationController
 
   def customer_orders_list
     @order_list = @order.order_items.all
+    @total_price = 0
+    @order_list.each { |x|
+      @total_price += x.menu.price
+    }
   end
 
   private

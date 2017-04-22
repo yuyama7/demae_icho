@@ -2,6 +2,36 @@
 
 <h1>Order List</h1>
 
+<p>
+  <strong>Restaurant Name</strong>
+  <%= @order.restaurant.name %>
+</p>
+
+<p>
+  <strong>Status</strong>
+  <%= @order.status %>
+</p>
+
+<p>
+  <strong>Total Price</strong>
+  <%= @total_price %>
+</p>
+
+<p>
+  <strong>Customer Name</strong>
+  <%= @order.user.name %>
+</p>
+
+<p>
+  <strong>Customer Location</strong>
+  <%= @order.user.location %>
+</p>
+
+<p>
+  <strong>Customer mail</strong>
+  <%= @order.user.email %>
+</p>
+
 <table>
   <thead>
     <tr>
@@ -13,8 +43,8 @@
   <tbody>
     <% @order_list.each do |order| %>
       <tr>
-        <td><%= order.name %></td>
-        <td><%= order.price %></td> 
+        <td><%= order.menu.name %></td>
+        <td><%= order.menu.price %></td>
       </tr>
     <% end %>
   </tbody>
