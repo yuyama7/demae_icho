@@ -40,6 +40,8 @@
   </tbody>
 </table>
 
+<% if @order.accepted? %>
 did you receive your foods? <%= link_to 'yes', order_status_update_path(:id => @order.id, :status => Order.statuses[:received]), method: :post %><br /><br />
+<% end %>
 
 <%= link_to 'Back', orders_path %>
