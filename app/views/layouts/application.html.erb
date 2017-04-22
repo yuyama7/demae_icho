@@ -9,6 +9,21 @@
   </head>
 
   <body>
-    <%= yield %>
+
+    <div id="main-container" class="container">
+      <div class="row">
+        <div class="col-xs-3">
+          <h3>Demae Icho</h3>
+        </div>
+        <div class="col-xs-9">
+          <ul class="hmenu">
+            <%= render 'devise/menu/registration_items' %>
+            <%= render 'devise/menu/login_items' %>
+          </ul>
+          <%= yield %>
+        </div>
+      </div>
+    </div>
+    
   </body>
 </html>

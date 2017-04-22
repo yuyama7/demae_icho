@@ -69,6 +69,11 @@ class RestaurantsController < ApplicationController
     @orders = @restaurant.orders.all
   end
 
+  def all_list
+    @restaurants = Restaurant.all
+    render :template => "index"
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_restaurant
