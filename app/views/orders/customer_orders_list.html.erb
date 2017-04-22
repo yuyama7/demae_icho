@@ -1,63 +1,65 @@
-<p id="notice"><%= notice %></p>
+<div class="container">
+  <p id="notice"><%= notice %></p>
 
-<h1>Order List</h1>
+  <h1>Order List</h1>
 
-<p>
-  <strong>Restaurant Name</strong>
-  <%= @order.restaurant.name %>
-</p>
+  <p>
+    <strong>Restaurant Name</strong>
+    <%= @order.restaurant.name %>
+  </p>
 
-<p>
-  <strong>Status</strong>
-  <%= @order.status %>
-</p>
+  <p>
+    <strong>Status</strong>
+    <%= @order.status %>
+  </p>
 
-<p>
-  <strong>Delivery charge</strong>
-  <%= @order.restaurant.delivery_charge %>
-</p>
+  <p>
+    <strong>Delivery charge</strong>
+    <%= @order.restaurant.delivery_charge %>
+  </p>
 
-<p>
-  <strong>Total Price</strong>
-  <%= @total_price %>
-</p>
+  <p>
+    <strong>Total Price</strong>
+    <%= @total_price %>
+  </p>
 
-<p>
-  <strong>Customer Name</strong>
-  <%= @order.user.name %>
-</p>
+  <p>
+    <strong>Customer Name</strong>
+    <%= @order.user.name %>
+  </p>
 
-<p>
-  <strong>Customer Location</strong>
-  <%= @order.user.location %>
-</p>
+  <p>
+    <strong>Customer Location</strong>
+    <%= @order.user.location %>
+  </p>
 
-<p>
-  <strong>Customer mail</strong>
-  <%= @order.user.email %>
-</p>
+  <p>
+    <strong>Customer mail</strong>
+    <%= @order.user.email %>
+  </p>
 
-<table class="table table-hover">
-  <thead>
-    <tr>
-      <th>Name</th>
-      <th>Price</th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @order_list.each do |order| %>
+  <table class="table table-hover">
+    <thead>
       <tr>
-        <td><%= order.menu.name %></td>
-        <td><%= order.menu.price %></td>
+        <th>Name</th>
+        <th>Price</th>
       </tr>
-    <% end %>
-  </tbody>
-</table>
+    </thead>
 
-<br>
+    <tbody>
+      <% @order_list.each do |order| %>
+        <tr>
+          <td><%= order.menu.name %></td>
+          <td><%= order.menu.price %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
 
-<% if @order.requested? %>
-<%= link_to 'order accept', order_status_update_path(:id => @order.id, :status => Order.statuses[:accepted]), method: :post %><br /><br />
-<%= link_to 'order reject', order_status_update_path(:id => @order.id, :status => Order.statuses[:rejected]), method: :post %><br /><br />
-<% end %>
+  <br>
+
+  <% if @order.requested? %>
+  <%= link_to 'order accept', order_status_update_path(:id => @order.id, :status => Order.statuses[:accepted]), method: :post, :class => "btn btn-primary" %>
+  <%= link_to 'order reject', order_status_update_path(:id => @order.id, :status => Order.statuses[:rejected]), method: :post, :class => "btn btn-danger" %>
+  <% end %>
+</div>
