@@ -1,19 +1,21 @@
-<p id="notice"><%= notice %></p>
+<div class="container">
+	<p id="notice"><%= notice %></p>
 
-<p>
-  <strong>Name:</strong>
-  <%= @restaurant.name %>
-</p>
+	<p>
+	  <strong>Name:</strong>
+	  <%= @restaurant.name %>
+	</p>
 
-<p>
-  <strong>Location:</strong>
-  <%= @restaurant.location %>
-</p>
+	<p>
+	  <strong>Location:</strong>
+	  <%= @restaurant.location %>
+	</p>
 
-<p>
-  <strong>Delivery charge:</strong>
-  <%= @restaurant.delivery_charge %>
-</p>
+	<p>
+	  <strong>Delivery charge:</strong>
+	  <%= @restaurant.delivery_charge %>
+	</p>
 
-<%= link_to 'Edit', edit_restaurant_path(@restaurant) %> |
-<%= link_to 'Back', restaurants_path %>
+	<%= link_to 'Edit', edit_restaurant_path(@restaurant) %> |
+	<%= link_to 'Back', restaurants_path %>
+</div>
