@@ -1,24 +1,26 @@
-<p id="notice"><%= notice %></p>
+<div class="container">
+	<p id="notice"><%= notice %></p>
 
-<p>
-  <strong>Name:</strong>
-  <%= @menu.name %>
-</p>
+	<p>
+	  <strong>Name:</strong>
+	  <%= @menu.name %>
+	</p>
 
-<p>
-  <strong>Description:</strong>
-  <%= @menu.description %>
-</p>
+	<p>
+	  <strong>Description:</strong>
+	  <%= @menu.description %>
+	</p>
 
-<p>
-  <strong>Image</strong>
-  <%= image_tag @menu.image_path, size:50 %>
-</p>
+	<p>
+	  <strong>Image</strong>
+	  <%= image_tag @menu.image_path, size:50 %>
+	</p>
 
-<p>
-  <strong>Price:</strong>
-  <%= @menu.price %>
-</p>
+	<p>
+	  <strong>Price:</strong>
+	  <%= @menu.price %>
+	</p>
 
-<%= link_to 'Edit', edit_restaurant_menu_path(@menu) %> |
-<%= link_to 'Back', restaurant_menus_path(@menu.restaurant_id) %>
+	<%= link_to 'Edit', edit_restaurant_menu_path(@menu) %> |
+	<%= link_to 'Back', restaurant_menus_path(@menu.restaurant_id) %>
+</div>
