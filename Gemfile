@@ -38,6 +38,7 @@ gem 'bootstrap', '~> 4.0.0.alpha6'
 gem 'jquery_mobile_rails'
 gem 'devise'
 gem 'seed_dump'
+gem 'carrierwave'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
