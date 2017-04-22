@@ -1,6 +1,5 @@
 class OrdersController < ApplicationController
   before_action :set_order, only: [:show, :edit, :update, :destroy, :update_status, :customer_orders_list]
-  before_action :set_restaurant, :only => [:index, :create, :new, :edit]
 
   # GET /orders
   # GET /orders.json
@@ -17,7 +16,9 @@ class OrdersController < ApplicationController
   def new
     @restaurant_id = params[:restaurant_id]
     session[:shopping_cart] ||= Array.new
-    @menus = Menu.where(id: session[:shopping_cart])
+    if session[:shopping_cart].present?
+      @menus = Menu.where(id: session[:shopping_cart])
+    end
     @order = Order.new
   end
 

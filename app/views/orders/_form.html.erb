@@ -11,6 +11,7 @@
     </div>
   <% end %>
 
+<% if @menus.present? %>
   <table>
     <thead>
       <tr>
@@ -23,6 +24,7 @@
     </thead>
 
     <tbody>
+
       <% @menus.each do |menu| %>
         <tr>
           <td><%= menu.name %></td>
@@ -35,6 +37,9 @@
       <% end %>
     </tbody>
   </table>
+<% else %>
+your cart is empty
+<% end %>
 
   <%= f.hidden_field :restaurant_id, :value => @restaurant_id %>
   <div class="actions">
