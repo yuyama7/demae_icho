@@ -33,7 +33,7 @@
     <% @order.order_items.each do |item| %>
       <tr>
         <td><%= item.menu.name %></td>
-        <td><%= item.menu.image_path %></td>
+        <td><%= image_tag item.menu.image_path, size:50 %></td>
         <td><%= item.menu.price %></td>
       </tr>
     <% end %>
