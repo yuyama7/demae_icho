@@ -21,7 +21,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="#">Demae Icho</a>
+                <%= link_to 'Demae Icho', new_user_session_path, class: "navbar-brand" %>
                 <% if user_signed_in? && current_user.customer? %>
                   <%= link_to 'View Restaurants', search_restaurants_path, class: "navbar-brand" %>
                   <%= link_to 'View Orders', orders_path, class: "navbar-brand" %>
