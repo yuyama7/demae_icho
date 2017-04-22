@@ -5,4 +5,5 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :trackable, :validatable
 
   has_many :restaurants
+  enum account_type: [:customer, :owner]
 end
