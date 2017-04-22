@@ -13,6 +13,6 @@ Rails.application.routes.draw do
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 
   get '/restaurant/:id/customer_orders', to: 'restaurants#customer_orders', as: 'customer_orders'
-  get '/restaurant/:id/customer_orders/list', to: 'restaurants#customer_orders_list', as: 'customer_orders_list'
+  get '/orders/:id/customer_orders_list', to: 'orders#customer_orders_list', as: 'customer_orders_list'
   post '/order/:id/update_status', to: 'orders#update_status', as: 'order_status_update'
 end

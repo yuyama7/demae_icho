@@ -18,8 +18,9 @@
       <tr>
         <td><%= order.id %></td>
         <td><%= order.user.name %></td>
-        <td><%= order.created_at %></td>
+        <td><%= order.created_at %></td> 
         <td><%= order.status %></td>
+        <td><%= link_to 'View Orders', customer_orders_list_path(order.id) %></td>
         <% if order.status == "requested" %>
           <td><%= link_to 'Accept', order_status_update_path(:id => order.id, :status => 4), method: :post %></td>
           <td><%= link_to 'Cancel', order_status_update_path(:id => order.id, :status => 1), method: :post %></td>

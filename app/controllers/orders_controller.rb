@@ -1,5 +1,5 @@
 class OrdersController < ApplicationController
-  before_action :set_order, only: [:show, :edit, :update, :destroy, :update_status]
+  before_action :set_order, only: [:show, :edit, :update, :destroy, :update_status, :customer_orders_list]
   before_action :set_restaurant, :only => [:index, :create, :new, :edit]
 
   # GET /orders
@@ -69,6 +69,10 @@ class OrdersController < ApplicationController
     @order.status = params[:status].to_i
     @order.save
     redirect_to(:back)
+  end
+
+  def customer_orders_list
+    @order_list = @order.order_items.all
   end
 
   private
