@@ -11,19 +11,27 @@
   <body>
 
     <div id="main-container" class="container">
-      <div class="row">
-        <div class="col-xs-3">
-          <h3>Demae Icho</h3>
-        </div>
-        <div class="col-xs-9">
-          <ul class="hmenu">
-            <%= render 'devise/menu/registration_items' %>
-            <%= render 'devise/menu/login_items' %>
-          </ul>
-          <%= yield %>
-        </div>
-      </div>
+        <!-- Static navbar -->
+        <nav class="navbar navbar-default">
+            <div class="container-fluid">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="#">Demae Icho</a>
+            </div>
+                <div id="navbar" class="navbar-collapse collapse">
+                    <ul class="nav navbar-nav navbar-right">
+                        <%= render 'devise/menu/registration_items' %>
+                        <%= render 'devise/menu/login_items' %>
+                    </ul>
+                </div><!--/.nav-collapse -->
+            </div><!--/.container-fluid -->
+        </nav>
     </div>
-    
+    <%= yield %>
   </body>
 </html>
